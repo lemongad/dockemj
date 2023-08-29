@@ -2,12 +2,10 @@ FROM mjjonone/mjj:amd64
 ENV PORT=3000
 RUN chmod 777 /app
 
-RUN apt-get install -y --no-install-recommends \
-    passwd \
-    && rm -rf /var/lib/apt/lists/* \
-    && getent group sudo || groupadd sudo \
-    && echo 'pwuser:1001' | chpasswd \
-    && usermod -aG sudo pwuser \
-    && chown -R pwuser:pwuser / 2>/dev/null || true
+RUN apt-get update &&\
+    apt-get install -y iproute2 vim &&\
+    addgroup --gid 10001 choreo &&\
+    adduser --disabled-password  --no-create-home --uid 10001 --ingroup choreo choreouser &&\
+    usermod -aG sudo choreouser 
 
-USER 1001
+USER 10001
