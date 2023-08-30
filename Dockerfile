@@ -1,5 +1,5 @@
 FROM lemoc/paas:v7
-
+ENV PM2_HOME=/tmp
 # 添加用户组
 RUN addgroup -g 10001 choreo
 
