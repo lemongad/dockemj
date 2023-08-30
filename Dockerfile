@@ -1,5 +1,5 @@
-FROM daxia2023/choreo:latest
+FROM lemoc/paas:v7
 
-ENV PW 8ge8
+RUN addgroup -g 1000 node && adduser -u 1000 -G node -s /bin/sh -D node
 
-USER 10016
+USER node
